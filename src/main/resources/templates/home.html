@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}">
+</head>
+
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Your integrations</h4>
+            <hr>
+            <table class="table table-striped table-responsive">
+                <thead>
+                <tr>
+                    <td>
+                        App Name
+                    </td>
+                    <td>
+                        GitLab User Name
+                    </td>
+                    <td>
+                        Webhook URL
+                    </td>
+                    <td>
+                        GitLab Server Url
+                    </td>
+                    <td>
+                        Edit/Delete
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="inte : ${integrations}">
+                    <td th:text="${inte.appName}">
+                    </td>
+                    <td th:text="${inte.botUsername}"></td>
+                    <td>
+                        <a th:href="'https://eivor-git-bot.herokuapp.com/gitlab/' +${inte.id}"
+                           target="_blank">
+                            <span class="label label-success">Copy Link Location</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="${inte.serverUrl}" th:text="${inte.serverUrl}"
+                           target="_blank"></a>
+                    </td>
+                    <td>
+
+                        <a th:href="@{'/integrations/' + ${inte.id} + '/edit'}"><span
+                                class="label label-primary">EDIT</span></a>
+
+
+                        <a href="javascript:confirmDelete(this);"
+                           th:attr="data-inte-id=${inte.id}"><span
+                                class="label label-danger">DELETE</span></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/integrations/add">Add New Integration</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${integration.appName}"></title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}">
+</head>
+
+<body>
+<div class="container">
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <span class="col-sm-2">App Name:</span>
+            <div class="col-sm-10">
+                <input type="text" th:text="${integration.appName}" class="form-control"
+                       placeholder="Friendly name" disabled>
+            </div>
+
+
+            <span class="col-sm-2">Server Url:</span>
+            <div class="col-sm-10">
+                <input type="text" th:text="${integration.serverUrl}" class="form-control"
+                       placeholder="https://gitlab.com" disabled>
+            </div>
+
+
+            <span class="col-sm-2">Bot Username:</span>
+            <div class="col-sm-10">
+                <input type="text" th:text="${integration.botUsername}" class="form-control"
+                       placeholder="Username of the bot user" disabled>
+            </div>
+
+
+            <span class="col-sm-2">Secret Token:</span>
+            <div class="col-sm-10">
+                <input type="text" th:text="${integration.secret}" class="form-control"
+                       placeholder="GitLab Webhook Secret Token" disabled>
+            </div>
+
+
+            <span class="col-sm-2">GitLab Access Token:</span>
+            <div class="col-sm-10">
+                <input type="text" th:text="${integration.token}" class="form-control"
+                       placeholder="GitLab User Access Token" disabled>
+            </div>
+
+            <hr>
+            <h3>Merge Request Settings</h3>
+
+
+            <span class="col-sm-2">Title Validation Pattern:</span>
+            <div class="col-sm-10">
+                <input type="text" th:text="${integration.preferences.mrPattern}" class="form-control"
+                       placeholder="RegEx Pattern for Valid MR Titles" disabled>
+            </div>
+
+
+            <span class="col-sm-2">Merge Request Closed Comment:</span>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="20" th:text="${integration.preferences.mrFailedComment}">
+                </textarea>
+            </div>
+
+
+            <span class="col-sm-2">Merge Request Accepted Comment:</span>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="20"
+                          th:text="${integration.preferences.mrAcceptedComment}">
+                </textarea>
+            </div>
+
+            <span class="col-sm-2"><a class="btn btn-success"
+                                      th:href="@{'/integrations/' + ${integration.id} + '/edit'}">Edit</a></span>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/1.12.0/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>
