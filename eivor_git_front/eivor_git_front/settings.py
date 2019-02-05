@@ -83,10 +83,10 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('EIVOR_DB_NAME'),
-        'USER': os.environ.get('EIVOR_DB_USERNAME'),
-        'PASSWORD': os.environ.get('EIVOR_DB_PASSWORD'),
-        'HOST': os.environ.get('EIVOR_DB_URL'),
+        'NAME': os.environ.get('EIVOR_DB_NAME', default='eivor'),
+        'USER': os.environ.get('EIVOR_DB_USERNAME', default='postgres'),
+        'PASSWORD': os.environ.get('EIVOR_DB_PASSWORD', default='password'),
+        'HOST': os.environ.get('EIVOR_DB_URL', default='localhost'),
         'PORT': os.environ.get('PORT', default=''),  # heroku port
     }
 }
@@ -137,13 +137,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-}
-JWT_AUTH = {
-    'JWT_AUTH_HEADER_PREFIX': 'JWT',
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300)
 }

@@ -14,7 +14,7 @@ django-rest-knox = "*"
 pylint-django = "*"
 psycopg2 = "*"
 gunicorn = "*"
-djangorestframework-jwt = "*"
+djangorestframework-simplejwt = "*"
 
 [requires]
 python_version = "3.6"
