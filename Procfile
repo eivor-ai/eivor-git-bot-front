@@ -1,1 +1,1 @@
-web: ./mvnw spring-boot:run -Dserver.port=$PORT
+web: python3 app.py
