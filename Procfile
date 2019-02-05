@@ -1,1 +1,1 @@
-web: ./mvnw spring-boot:run -Dserver.port=$PORT
+web: cd ./eivor_git_front && gunicorn eivor_git_front.wsgi
