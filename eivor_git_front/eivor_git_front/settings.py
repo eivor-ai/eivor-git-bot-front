@@ -87,7 +87,7 @@ DATABASES = {
         'USER': os.environ.get('EIVOR_DB_USERNAME'),
         'PASSWORD': os.environ.get('EIVOR_DB_PASSWORD'),
         'HOST': os.environ.get('EIVOR_DB_URL'),
-        'PORT': '',
+        'PORT': os.environ.get('PORT', default=''),  # heroku port
     }
 }
 
@@ -143,7 +143,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
-JWT_AUTH = { 
+JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300)
 }
