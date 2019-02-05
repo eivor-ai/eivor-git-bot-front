@@ -5,8 +5,8 @@ import Integrations from './Integrations';
 export default function Dashboard() {
   return (
     <Fragment>
-        <Integrations />
-        <Form />
+      <Form />
+      <Integrations />
     </Fragment>
   )
 }
