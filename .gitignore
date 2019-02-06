@@ -5,6 +5,8 @@ __pycache__/
 
 .vscode/
 node_modules
+.sonarlint
+eivor_git_front/frontend/static/frontend/*
 
 # C extensions
 *.so

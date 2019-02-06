@@ -25,6 +25,7 @@ export class Integrations extends Component {
               <th>Server URL</th>
               <th>Bot Username</th>
               <th />
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,7 @@ export class Integrations extends Component {
                 <td>{integration.id}</td>
                 <td>{integration.server_url}</td>
                 <td>{integration.bot_username}</td>
+                <td><button className="btn btn-sm btn-success" onClick={this.props.deleteIntegration.bind(this, integration.id)}>Edit</button></td>
                 <td><button className="btn btn-sm btn-danger" onClick={this.props.deleteIntegration.bind(this, integration.id)}>Delete</button></td>
               </tr>
             ))}
