@@ -15,7 +15,11 @@ export class Alerts extends Component {
         const { error, alert, message } = this.props;
         if (error !== previousProps.error) {
             Object.keys(error.msg).forEach(function (key) {
-                alert.error(`Error in ${key}: ${error.msg[key].join(', ')}`)
+                var actualError = error.msg[key]
+                if (actualError.join !== undefined) {
+                    actualError = actualError.join(', ')
+                }
+                alert.error(`Error in ${key}: ${actualError}`)
             })
         }
 
