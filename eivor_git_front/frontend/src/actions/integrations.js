@@ -11,7 +11,17 @@ export const getIntegrations = () => dispatch => {
                 type: GET_INTEGRATIONS,
                 payload: response.data
             });
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            const error = {
+                msg: err.response.data,
+                status: err.response.status
+            }
+
+            dispatch({
+                type: GET_ERRORS,
+                payload: error
+            })
+        })
 }
 
 export const deleteIntegration = (id) => dispatch => {
@@ -22,7 +32,17 @@ export const deleteIntegration = (id) => dispatch => {
                 type: DELETE_INTEGRATION,
                 payload: id
             });
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            const error = {
+                msg: err.response.data,
+                status: err.response.status
+            }
+
+            dispatch({
+                type: GET_ERRORS,
+                payload: error
+            })
+        })
 }
 
 export const addIntegration = (integration) => dispatch => {
