@@ -1,26 +1,19 @@
 import axios from 'axios'
-import { createMessage } from './messages'
+import { createMessage, returnErrors } from './messages'
+import { tokenConfig } from './auth'
 
 import { GET_INTEGRATIONS, DELETE_INTEGRATION, ADD_INTEGRATION, GET_ERRORS } from './types'
 
 // CRUD?
-export const getIntegrations = () => dispatch => {
-    axios.get('/api/integrations/')
+export const getIntegrations = () => (dispatch, getState) => {
+    axios.get('/api/integrations/', tokenConfig(getState))
         .then(response => {
             dispatch({
                 type: GET_INTEGRATIONS,
                 payload: response.data
             });
         }).catch(err => {
-            const error = {
-                msg: err.response.data,
-                status: err.response.status
-            }
-
-            dispatch({
-                type: GET_ERRORS,
-                payload: error
-            })
+            dispatch(returnErrors(err.response.data, err.response.status))
         })
 }
 
@@ -33,15 +26,7 @@ export const deleteIntegration = (id) => dispatch => {
                 payload: id
             });
         }).catch(err => {
-            const error = {
-                msg: err.response.data,
-                status: err.response.status
-            }
-
-            dispatch({
-                type: GET_ERRORS,
-                payload: error
-            })
+            dispatch(returnErrors(err.response.data, err.response.status))
         })
 }
 
@@ -54,14 +39,6 @@ export const addIntegration = (integration) => dispatch => {
                 payload: response.data
             });
         }).catch(err => {
-            const error = {
-                msg: err.response.data,
-                status: err.response.status
-            }
-
-            dispatch({
-                type: GET_ERRORS,
-                payload: error
-            })
+            dispatch(returnErrors(err.response.data, err.response.status))
         })
 }

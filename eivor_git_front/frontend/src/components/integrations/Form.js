@@ -9,8 +9,7 @@ export class Form extends Component {
     secret: '',
     oauth_token: '',
     bot_username: '',
-    server_url: '',
-    user: 3
+    server_url: ''
   }
 
   static propTypes = {
@@ -32,8 +31,7 @@ export class Form extends Component {
       secret: '',
       oauth_token: '',
       bot_username: '',
-      server_url: '',
-      user: 3
+      server_url: ''
     })
   }
 

@@ -1,7 +1,32 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { logout } from '../../actions/auth'
 
 export class Header extends Component {
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired
+  }
+
   render() {
+    const { isAuthenticated, user } = this.props.auth
+
+    const authLinks = (
+      <ul className="navbar-nav ml-autho mt-2 mt-lg-0">
+        <span className="navbar-text mr-3">
+          Howdy, <strong>{user ? `${user.username}` : ''}</strong>
+        </span>
+        <li className="nav-item">
+          <a onClick={this.props.logout} href="javascript:;" className="nav-link text-light">Logout</a>
+        </li>
+      </ul>
+    )
+    const guestLinks = (
+      // No Op for now
+      ""
+    )
+
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="/">Eivor Git Bot</a>
@@ -19,9 +44,15 @@ export class Header extends Component {
             </li>
           </ul>
         </div>
+
+        {isAuthenticated ? authLinks : guestLinks}
       </nav>
     )
   }
 }
 
-export default Header
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, { logout })(Header)
