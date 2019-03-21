@@ -9,8 +9,7 @@ export class Form extends Component {
     secret: '',
     oauth_token: '',
     bot_username: '',
-    server_url: '',
-    user: 3
+    server_url: ''
   }
 
   static propTypes = {
@@ -32,8 +31,7 @@ export class Form extends Component {
       secret: '',
       oauth_token: '',
       bot_username: '',
-      server_url: '',
-      user: 3
+      server_url: ''
     })
   }
 
@@ -83,13 +81,15 @@ export class Form extends Component {
                 value={bot_username} />
             </div>
             <div className="form-group">
-              <label htmlFor="server_url">URL of your GitLab server [https://gitlab.com]</label>
+              <label htmlFor="server_url">URL of your GitLab server</label>
               <input type="text"
                 className="form-control"
                 name="server_url"
+                aria-describedby="serverHelp"
                 placeholder="Tell us where you are"
                 onChange={this.onChange}
                 value={server_url} />
+              <small id="serverHelp" className="form-text text-muted">This defaults to <b>https://gitlab.com</b>.</small>
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
           </form>

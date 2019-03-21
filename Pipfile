@@ -8,13 +8,12 @@ pylint = "*"
 autopep8 = "*"
 
 [packages]
-django = "*"
+django = ">=2.1.6"
 djangorestframework = "*"
 django-rest-knox = "*"
 pylint-django = "*"
 psycopg2 = "*"
 gunicorn = "*"
-djangorestframework-simplejwt = "*"
 
 [requires]
 python_version = "3.6"
