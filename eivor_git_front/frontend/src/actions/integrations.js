@@ -17,8 +17,8 @@ export const getIntegrations = () => (dispatch, getState) => {
         })
 }
 
-export const deleteIntegration = (id) => dispatch => {
-    axios.delete(`/api/integrations/${id}/`)
+export const deleteIntegration = (id) => (dispatch, getState) => {
+    axios.delete(`/api/integrations/${id}/`, tokenConfig(getState))
         .then(response => {
             dispatch(createMessage({ msg: `Integration #${id} was deleted` }))
             dispatch({
@@ -30,8 +30,8 @@ export const deleteIntegration = (id) => dispatch => {
         })
 }
 
-export const addIntegration = (integration) => dispatch => {
-    axios.post('/api/integrations/', integration)
+export const addIntegration = (integration) => (dispatch, getState) => {
+    axios.post('/api/integrations/', integration, tokenConfig(getState))
         .then(response => {
             dispatch(createMessage({ msg: `Integration #${response.data.id} created` }))
             dispatch({
